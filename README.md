@@ -29,19 +29,55 @@
 ```
 
 ## II. Datasets
-우리는 공개된 마더보드 결함 탐지 데이터셋을 사용할 계획이다. 이 데이터셋은 컴퓨터 메인보드 결함을 감지하기 위한 객체 감지 모델에 사용되며, YOLOv5, YOLOv7, YOLOv8 및 CLIP 포맷으로 제공된다. 데이터셋에는 1000개 이상의 항목과 2800개의 주석이 포함되어 있으며, 일반적인 메인보드 결함(예: 느슨한 나사, 잘못 사용된 나사, 분리된 CPU 팬 포트, 긁힘 등)에 대한 정보가 담겨 있다.
+우리는 공개된 마더보드 결함 탐지 데이터셋을 사용할 계획이다. 이 데이터셋은 컴퓨터 메인보드 결함을 감지하기 위한 객체 감지 모델에 사용되며, YOLOv5, YOLOv7, YOLOv8 및 CLIP 포맷으로 제공된다. 데이터셋에는 1000개 이상의 이미지와 2800개의 주석이 포함되어 있으며, 일반적인 메인보드 결함(예: 느슨한 나사, 잘못 사용된 나사, 분리된 CPU 팬 포트, 긁힘 등)에 대한 정보가 담겨 있다.
 
 ### Dataset Details
-이미지 수: 389
-주석 수: 2860
-클래스 수: 11
-평균 이미지 크기: 1.10MP
-중앙값 이미지 비율: 1044x1074
-이 데이터셋은 메인보드 생산 결함을 정확히 감지하고 분석하는 데 유용하며, 인공지능 모델의 학습과 평가에 적합한 환경을 제공한다.
 
+![--2022-03-08-21-44-03_png rf 90d11f761f078ae435fa32ae00b6750d](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/c22de529-6f1f-49db-8549-67bfda57538c)
 
-### 데이터셋 통합 및 처리
+이미지 수: 389<br>
+주석 수: 2860<br>
+클래스 수: 11<br>
+평균 이미지 크기: 1.10MP<br>
+중앙값 이미지 비율: 1044x1074<br>
+<br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/d216ad14-461f-40d9-821d-bfdd5cc770fd)
 
+### Dataset 전처리
+각 이미지에 다음과 같은 전처리가 적용되었다.<br>
+<br>
+픽셀 데이터의 자동 방향 조정 (EXIF 방향 정보 제거)<br>
+1000x1000으로 크기 조정 (Stretch)<br>
+자동 대비 조정 (adaptive equalization 사용)<br>
+<br>
+### Dataset 증강
+각 원본 이미지에서 아래와 같은 3가지 증강 기법이 적용되었다.<br>
+<br>
+50% 확률로 수평 반전<br>
+하나를 동일한 확률로 적용 (없음, 시계 방향 90도 회전, 반시계 방향 90도 회전)<br>
+랜덤 노출 조정: -25%에서 +25% 사이<br>
+<br>
+### Dataset 분배
+훈련(train) 데이터: 939장 (92.51%)<br>
+검증(valid) 데이터: 31장 (3.05%)<br>
+테스트(test) 데이터: 45장 (4.43%)<br>
+
+<br>
+
+### Dataset Label Details
+데이터셋의 레이블은 다음과 같이 구성되어 있다.<br>
+
+CPU_FAN_NO_Screws: CPU 팬에 나사가 없음<br>
+CPU_FAN_Screw_loose: CPU 팬 나사가 느슨함<br>
+CPU_FAN_Screws: CPU 팬 나사가 정상적으로 부착됨<br>
+CPU_fan: CPU 팬<br>
+CPU_fan_port: CPU 팬 포트<br>
+CPU_fan_port_detached: CPU 팬 포트가 분리됨<br>
+Incorrect_Screws: 잘못된 나사 사용<br>
+Loose_Screws: 느슨한 나사<br>
+No_Screws: 나사가 없음<br>
+Scratch: 긁힘<br>
+Screws: 나사<br>
 
 ## III. Methodology
 - Explaining your choice of algorithms (methods)
