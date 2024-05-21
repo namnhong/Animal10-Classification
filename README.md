@@ -1,8 +1,7 @@
 # YOLOv7_motherboard
 
 # Members: 
- 남현기, 한양대 에리카 컴퓨터학부, onep5286@gmail.com
- 홍진수, 한양대 에리카 컴퓨터학부, 
+ 남현기, 한양대 에리카 컴퓨터학부, onep5286@gmail.com<br>홍진수, 한양대 에리카 컴퓨터학부, h1101201@gmail.com
 
 # Proposal (Option 1 or 2) – This should be filled by sometime in early May.
 - Motivation: Why are you doing this?
