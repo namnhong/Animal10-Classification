@@ -1,1 +1,1 @@
-# Animal10-Classification
+# YOLOv7_motherboard
