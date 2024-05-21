@@ -92,6 +92,10 @@ YOLOv7은 YOLO 시리즈의 최신 버전으로, 여러 가지 기술적 개선�
 <br>
 
 ### YOLOv7 architecture
+- 전체 구조<br>
+![The-structure-of-YOLOv7](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/06d2390e-484d-40f1-a82f-631d4491d214)<br>
+<br>
+
 - E-ELAN(Extended efficient Layer Aggregation Networks) 확장<br>
 ![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/f4ead03e-a86d-4a6a-950a-4edf33d99349)<br>
 그레디언트가 경로를 효율적으로 제어(확장, 셔플, 병합)하는 E-ELAN 구조를 제안했다.<br>
@@ -112,11 +116,18 @@ inference 비용을 늘리지 않고 정확도를 향상시키는 방법이다.<
 - Coarse for auxiliary and fine for lead loss<br>
 ![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/aaba55af-47c9-4de5-8eb8-ccbe79a1a386)<br>
 Lead Head가 학습에 더 많은 영향을 미치므로 Aux Head라 할지라도 Lead Head를 거친 것을 사용하는 것이 성능에 더 좋다는 주장으로 위와 같은 방법을 제안했다.<br>
+
 <br>
 
 ### YOLOv7 performance
+- 실시간 객체 검출 모델 간 성능 평가<br>
 ![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/890163a3-7f04-4409-877c-f7ed11348172)<br>
+YOLOv7 모델의 평가는 비교 가능한 다른 실시간 객체 검출 모델들보다 더 빠르고(x축) 더 높은 정확도(y축)로 추론한다는 것을 보여준다.<br>
+<br>
+- YOLOv7 모델의 버전 간 성능 평가<br>
 ![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/08bfbf54-c157-4224-8b5f-9b9e4909c99e)<br>
+
+<br>
 
 ## IV. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
