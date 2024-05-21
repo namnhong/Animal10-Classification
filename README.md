@@ -80,8 +80,43 @@ Scratch: 긁힘<br>
 Screws: 나사<br>
 
 ## III. Methodology
-- Explaining your choice of algorithms (methods)
-- Explaining features (if any)
+
+### YOLO
+YOLO는 You Only Look Once의 약자로 객체 검출(Object detection) 알고리즘의 한 종류로, 이미지나 비디오 프레임에서 여러 객체를 실시간으로 검출할 수 있다. YOLO는 이미지 전체를 한 번에 처리하여 객체를 예측하는 방식을 사용하므로, 다른 객체 검출 알고리즘에 비해 매우 빠르고 효율적이다.<br>
+
+<br>
+
+### YOLOv7
+YOLOv7은 YOLO 시리즈의 최신 버전으로, 여러 가지 기술적 개선을 통해 더 높은 정확도와 효율성을 제공한다.<br>
+
+<br>
+
+### YOLOv7 architecture
+- E-ELAN(Extended efficient Layer Aggregation Networks) 확장<br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/f4ead03e-a86d-4a6a-950a-4edf33d99349)<br>
+그레디언트가 경로를 효율적으로 제어(확장, 셔플, 병합)하는 E-ELAN 구조를 제안했다.<br>
+<br>
+
+- 복합 스케일링<br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/89376215-4695-4dac-86a5-9f0f3b0b772b)<br>
+기존의 깊이 스케일링이 수행될 때는 블록의 출력 폭도 증가했다. 이는 뒤쪽의 입력 폭도 같이 증가하는 결과가 발생했다.<br><br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/07f208eb-aeb6-46b2-be70-f7fe2bd31442)<br>
+위와 같이 입/출력 폭을 유지하면서 깊이만 스케일하도록 하는 모델을 제안해 계산량을 감소시켰다.<br>
+<br>
+
+- Planned Re-parameterized convolution<br>
+매개변수가 변경된 layer가 있을 때, residual 연결이 있으면 안된다는 것을 발견해 Planned Re-parameterized convolution을 제안했다.
+inference 비용을 늘리지 않고 정확도를 향상시키는 방법이다.<br>
+<br>
+
+- Coarse for auxiliary and fine for lead loss<br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/aaba55af-47c9-4de5-8eb8-ccbe79a1a386)<br>
+Lead Head가 학습에 더 많은 영향을 미치므로 Aux Head라 할지라도 Lead Head를 거친 것을 사용하는 것이 성능에 더 좋다는 주장으로 위와 같은 방법을 제안했다.<br>
+<br>
+
+### YOLOv7 performance
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/890163a3-7f04-4409-877c-f7ed11348172)<br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/08bfbf54-c157-4224-8b5f-9b9e4909c99e)<br>
 
 ## IV. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
