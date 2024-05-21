@@ -40,22 +40,17 @@
 이 데이터셋은 메인보드 생산 결함을 정확히 감지하고 분석하는 데 유용하며, 인공지능 모델의 학습과 평가에 적합한 환경을 제공한다.
 
 
-
 ### 데이터셋 통합 및 처리
-위의 가져온 데이터셋들은 모두 경기도 내의 읍/면/동에 대한 정보를 가지고 있다 따라서 경기도내의 읍/면/동을 기준으로 그룹핑 하여 데이터셋들을 통합할 것이다. 
-이때 알고가야 할 점은 데이터셋마다 읍/면/동에 대한 정보는 가지고 있지만 저장 형식에 차이가 있기 때문에 형식을 통일하고 그룹핑 할 것이다.  
 
-# Datasets
-- Describing your dataset
 
-# Methodology
+## III. Methodology
 - Explaining your choice of algorithms (methods)
 - Explaining features (if any)
 
-# Evaluation & Analysis
+## IV. Evaluation & Analysis
 - Graphs, tables, any statistics (if any)
 
-# Related Work (e.g., existing studies)
+## V. Related Work (e.g., existing studies)
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
 
-# Conclusion: Discussion
+## VI. Conclusion: Discussion
