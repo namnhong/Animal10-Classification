@@ -1,5 +1,5 @@
 # AI-X-DeepLearning (YOLOv7_motherboard)
-> 동영상 링크: https://youtu.be/TZccazEeNqw
+> 동영상 링크: 
 ## 목차
 
 1. [Proposal](#i-proposal)
