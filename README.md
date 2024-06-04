@@ -124,9 +124,13 @@ Lead Head가 학습에 더 많은 영향을 미치므로 Aux Head라 할지라�
 ![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/890163a3-7f04-4409-877c-f7ed11348172)<br>
 YOLOv7 모델의 평가는 비교 가능한 다른 실시간 객체 검출 모델들보다 더 빠르고(x축) 더 높은 정확도(y축)로 추론한다는 것을 보여준다.<br>
 <br>
-- YOLOv7 모델의 버전 간 성능 평가<br>
-![image](https://github.com/namnhong/YOLOv7_motherboard/assets/55042341/08bfbf54-c157-4224-8b5f-9b9e4909c99e)<br>
 
+- YOLOv7 모델의 버전 간 성능 평가<br>
+![image](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/7bd3a0b2-c295-41f4-93f4-5283de10d000)
+<br>
+YOLOv7은 annotation quality가 낮아져도 YOLOv4보다 성능(AP 및 mAP)이 더 높게 유지되며, 더 견고한 성능을 보인다.<br>
+RC 방법은 annotation quality가 낮아질수록 리콜(RC %)이 증가하는 특이한 경향을 보인다.<br>
+요약하면, YOLOv7이 가장 안정적인 성능을 유지하는 것을 확인 할 수 있다.
 <br>
 
 ## IV. Evaluation & Analysis
