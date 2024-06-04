@@ -208,7 +208,7 @@ F1 Score는 정밀도와 재현율의 조화평균을 기준으로 모델의 균
 <br>
 
 
-## V. Related Work (e.g., existing studies)
+## V. Related Work
 
 ```
 1. 데이터셋 링크  
