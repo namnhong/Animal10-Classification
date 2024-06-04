@@ -136,6 +136,7 @@ YOLOv7은 annotation quality가 낮아져도 YOLOv4보다 성능(AP 및 mAP)이 
 참고 :<br>
 https://www.researchgate.net/figure/The-structure-of-YOLOv7_fig4_365691457<br>
 https://blog.roboflow.com/yolov7-breakdown/<br>
+https://velog.io/@parksh089g/%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0YOLOv7-Trainable-bag-of-freebies-sets-new-state-of-the-art-for-real-time-objectdetectors<br>
 https://yscho03.tistory.com/258<br>
 <br>
 
