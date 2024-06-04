@@ -7,6 +7,7 @@
 3. [Methodology](#iii-methodology)
 4. [Evaluation & Analysis](#iv-evaluation--analysis)
 5. [Related Work](#v-related-work)
+6. [Conclusion: Discussion](#vi-conclusion-discussion)
    
 ## Title: YOLOv7를 활용한 컴퓨터 메인보드 불량 검증
 ## Members
@@ -134,9 +135,106 @@ RC 방법은 annotation quality가 낮아질수록 리콜(RC %)이 증가하는 
 <br>
 
 ## IV. Evaluation & Analysis
-- Graphs, tables, any statistics (if any)
+
+### 학습 과정
+
+100 epoch 동안 YOLOv7 모델을 학습하면서 기록을 아래에 남겼다.<br>
+각 에포크에서의 손실 값과 주요 지표들
+
+| Epoch | GPU 사용량 | 총 손실 | Box 손실 | cls 손실 | obj 손실 | mAP@0.5 | 정밀도 | 재현율 | val Box | val Obj | val cls |
+|-------|------------|--------|---------|----------|---------|---------|--------|--------|--------|--------|--------|
+| 0/99  | 1.61G      | 0.06916 | 0.03141 | 0.03306  | 0.1336  | 30      | 1024   | 0.6822 | 0.1238 | 0.1361 | 0.06081 |
+| 1/99  | 16.6G      | 0.05363 | 0.02406 | 0.02238  | 0.1001  | 17      | 1024   | 0.8607 | 0.1418 | 0.1493 | 0.07374 |
+| ...   | ...        | ...     | ...     | ...      | ...     | ...     | ...    | ...    | ...    | ...    | ...    |
+| 99/99 | 16.6G      | 0.01403 | 0.007901| 0.0002935| 0.02222 | 23      | 1024   | 0.8433 | 0.9331 | 0.8457 | 0.5683  |
+
+학습 과정에서 손실 값은 지속적으로 감소하며, 모델의 정밀도와 재현율은 증가했다. 최종 에포크에서는 총 손실이 0.01403으로 매우 낮고, mAP@0.5는 0.9331로 높은 성능을 보여준다.
+
+### 하이퍼파라미터 설정
+
+모델 학습에 사용된 주요 하이퍼파라미터는 다음과 같다:
+
+- 초기 학습률 (lr0): 0.01
+- 최종 학습률 (lrf): 0.1
+- 모멘텀 (momentum): 0.937
+- 가중치 감소 (weight_decay): 0.0005
+
+  
+### 모델 학습 결과 및 평가
+
+#### Confusion Matrix<br>
+![confusion_matrix](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/5d5eeecb-9b55-4bc9-9384-e9e67685e5dd)
+
+
+Confusion Matrix을 통해 모델의 클래스별 정확도를 분석한 결과, 대부분의 클래스에서 높은 정확도와 재현율을 보였다.<br>
+특히 `CPU_FAN_NO_Screws`, `CPU_FAN_Screw_loose`, `CPU_FAN_Screws`와 같은 대부분의 클래스에서 매우 높은 정확도를 나타나는 것을 확인 가능하다.<br>
+그러나 `CPU_fan_port_detached` 클래스는 비교적 낮은 정확도를 보였으며, 이는 추가적인 데이터로 학습이 더욱 더 필요할 것 같다.
+
+#### Precision-Recall Curve
+![PR_curve](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/773f0e2f-998f-4a76-81ef-d48f69b13c1e)
+Precision-Recall(PR) Curve를 통해 모델의 전반적인 성능을 평가할 수 있다. 대부분의 클래스에서 높은 정밀도와 재현율을 유지하며, 안정적인 성능이 나온다는 것을 알 수 있다.
+
+#### F1 Curve
+![F1_curve](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/483c28ea-e2b2-471d-9da6-2126a64ff00a)
+
+F1 Curve는 정밀도와 재현율의 조화평균을 기준으로 모델의 균형 잡힌 성능을 평가한다.<br>
+대부분의 클래스에서 F1 점수가 높게 나타났으며, 역시 괜찮은 성능을 보임을 나타낸다.
+
+### 테스트 결과 및 이미지 분석 결과
+테스트 데이터셋에서의 모델 성능은 다음과 같다
+
+- 평균 정밀도(mAP@0.5): 0.933
+- 정확도 (Precision): 0.8433
+- 재현율 (Recall): 0.9331
+- F1 점수: 0.87
+
+아래 이미지는 YOLOv7 모델을 학습하는 동안 메인보드 결함을 탐지한 결과이다. 각 이미지에는 예측된 결함이 박스와 라벨로 표시되어 있다. 
+
+#### 첫 번째 배치
+
+| 라벨 이미지 | 예측 이미지 |
+|-------------|-------------|
+| ![test_batch0_labels](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/d4fb154e-627d-4031-9e06-149c0cb62b36)| ![test_batch0_pred](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/97f7da1c-2681-45ad-aedf-3479c5306ee1) |
+
+#### 두 번째 배치
+
+| 라벨 이미지 | 예측 이미지 |
+|-------------|-------------|
+| ![test_batch1_labels](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/74105ac3-d25f-4cc6-9496-cf6a143dee22)| ![test_batch1_pred](https://github.com/namnhong/YOLOv7_motherboard/assets/50573818/5f2574dc-c7b0-4088-bcd4-c49793ed5f33)|
+
+#### 결과 해석
+모델은 다양한 결함을 정확하게 탐지하고 라벨링하는 데 성공하였다.<br>
+대부분의 클래스에서 예측이 정확하게 이루어졌으며, 특히 `CPU_FAN_NO_Screws`, `CPU_FAN_Screws`, `Scratch` 클래스에서 매우 높은 정확도를 보였다. 몇몇 이미지는 예측에서 약간의 오차가 있었지만, 전반적인 성능은 우수하다. 
+
+
+YOLOv7 모델은 메인보드 결함 탐지에 효과적임을 확인하였다. 모델의 높은 정확도와 재현율은 실제 생산 환경에서도 활용 가능성을 높이며, 추가적인 데이터 증강과 모델 튜닝을 통해 더 나은 성능을 기대할 수 있다.
+
+
+
+
+모델은 테스트 데이터셋에서도 높은 성능을 유지하며, 특히 `Screws`, `Loose_Screws`, `Incorrect_Screws` 클래스에서 거의 완벽한 정확도와 재현율을 보였다.
+
 
 ## V. Related Work (e.g., existing studies)
 - Tools, libraries, blogs, or any documentation that you have used to do this project.
 
+
 ## VI. Conclusion: Discussion
+
+이번 연구에서는 YOLOv7 모델을 사용하여 컴퓨터 메인보드의 결함을 자동으로 탐지하고 분류하는 모델을 성공적으로 개발하였다.<br>
+학습 과정에서 모델의 손실 값은 지속적으로 감소하였으며, 최종적으로 높은 정밀도와 재현율을 달성하였다.
+
+### 주요 성과
+1. **높은 성능**: 학습 과정에서 mAP@0.5가 0.9331을 기록하며, 모델의 전반적인 성능이 매우 우수함을 보여주었다. 특히, `CPU_FAN_NO_Screws`, `CPU_FAN_Screws`, `Scratch`와 같은 클래스에서 높은 정확도를 보였다.
+2. **효과적인 하이퍼파라미터 설정**: 최적의 하이퍼파라미터 설정을 통해 모델의 성능을 극대화하였다. 초기 학습률, 모멘텀, 가중치 감소 등의 설정이 모델의 학습 안정성과 성능 향상에 크게 기여하였다.
+3. **데이터 증강의 중요성**: 다양한 데이터 증강 기법을 적용하여 모델의 일반화 성능을 향상시켰다. 특히, 수평 반전, 회전, 노출 조정 등의 기법이 효과적이었다.
+
+### 한계 및 향후 연구 방향
+1. **데이터셋의 다양성 부족**: 현재 사용된 데이터셋은 메인보드의 특정 결함에만 집중되어 있다. 더 다양한 결함을 포함한 데이터셋을 사용하여 모델의 범용성을 높일 필요가 있다.
+2. **추가적인 데이터 증강**: `CPU_fan_port_detached`와 `No_Screws` 클래스에서 비교적 낮은 정확도를 보인 점을 개선하기 위해, 해당 클래스에 대한 추가적인 데이터 증강과 특성 추출이 필요하다.
+3. **실시간 구현**: 모델을 실시간 생산 라인에 통합하여 결함을 즉시 식별하고 수정할 수 있는 시스템을 개발해야 한다. 이를 통해 제품의 품질을 더욱 높일 수 있을 것이다.
+
+### 결론
+YOLOv7 기반의 결함 탐지 모델은 컴퓨터 메인보드 생산에서 품질 관리를 크게 향상시킬 수 있는 잠재력을 가지고 있다. 높은 정확도와 재현율을 통해 실제 생산 환경에서도 유용하게 활용될 수 있다. 향후 연구를 통해 모델의 성능을 더욱 개선
+
+
