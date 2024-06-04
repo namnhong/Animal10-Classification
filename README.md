@@ -214,9 +214,11 @@ F1 Score는 정밀도와 재현율의 조화평균을 기준으로 모델의 균
 1. 데이터셋 링크  
 컴퓨터 메인보드 결함: 결함이 있는 메인보드의 이미지와 레이블을 담고 있다
 - https://www.kaggle.com/datasets/yuelinxin/computer-motherboard-production-defects
+
 2. 모델 학습 및 성능 테스트 참고 게시물
 YOLOv7 커스텀 데이터 전반적인 학습 방법
 - https://tae-jun.tistory.com/11
+
 3. 그래프 해석
 분류 성능 지표 Precision(정밀도), Recall(재현율), F1-score 설명
 - https://ai-com.tistory.com/entry/ML-%EB%B6%84%EB%A5%98-%EC%84%B1%EB%8A%A5-%EC%A7%80%ED%91%9C-Precision%EC%A0%95%EB%B0%80%EB%8F%84-Recall%EC%9E%AC%ED%98%84%EC%9C%A8
