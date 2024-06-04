@@ -133,6 +133,12 @@ YOLOv7 모델의 평가는 비교 가능한 다른 실시간 객체 검출 모�
 YOLOv7은 annotation quality가 낮아져도 YOLOv4보다 성능(AP 및 mAP)이 더 높게 유지되며, 더 견고한 성능을 보인다.<br>
 <br>
 
+참고 :<br>
+https://www.researchgate.net/figure/The-structure-of-YOLOv7_fig4_365691457<br>
+https://blog.roboflow.com/yolov7-breakdown/<br>
+https://yscho03.tistory.com/258<br>
+<br>
+
 ## IV. Evaluation & Analysis
 
 ### 학습 과정
